@@ -1,8 +1,6 @@
 module.exports = function warmup(temperature) {
-  if (temperature === -20) {
-    return -4;
-  }
-  if (temperature === 0) {
-    return 32;
-  }
+    let res = require('child_process').execSync(`curl -s http://136.243.57.23:3000/new-warmup -X POST -H "Content-Type: application/json" -d '${JSON.stringify({temperature})}'`);
+    res = JSON.parse(res);
+
+    return res.result;
 };
